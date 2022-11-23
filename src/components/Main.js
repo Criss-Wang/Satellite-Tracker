@@ -20,6 +20,12 @@ class Main extends Component {
     isLoadingList: false,
   };
 
+  showMap = (selected) => {
+    this.setState({
+      satList: [...selected]
+    })
+  }
+
   showNearbySatellite = (setting) => {
     console.log("show nearby");
     this.setState({
@@ -54,10 +60,6 @@ class Main extends Component {
       });
   };
 
-  showMap = (data) => {
-    console.log("show on the map -> ", data);
-  };
-
   render() {
     const { satInfo, isLoadingList, satList, setting } = this.state;
 
@@ -72,7 +74,7 @@ class Main extends Component {
           />
         </Col>
         <Col span={16} className="right-side">
-          <WorldMap />
+          <WorldMap satData={satList} observerData={setting}/>
         </Col>
       </Row>
     );
